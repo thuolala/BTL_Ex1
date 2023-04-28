@@ -63,7 +63,13 @@ namespace Exercise1
 
         private void btnAgent_Click(object sender, EventArgs e)
         {
-
+            panelAction.Controls.Clear();
+            manageAgentForm mI = new manageAgentForm();
+            mI.TopLevel = false;
+            mI.Dock = DockStyle.Fill;
+            mI.Show();
+            panelAction.Controls.Add(mI);
+            mI.BringToFront();
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
