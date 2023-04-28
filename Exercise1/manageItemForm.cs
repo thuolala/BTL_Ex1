@@ -86,7 +86,8 @@ namespace Exercise1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            addItem f = new addItem();
+            f.ShowDialog();
         }
 
         private void comboBoxCate_SelectedIndexChanged(object sender, EventArgs e)
