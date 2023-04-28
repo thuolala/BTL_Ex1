@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelProduct = new Panel();
+            pictureBoxRefresh = new PictureBox();
             btnAdd = new Button();
             label3 = new Label();
             comboBoxByCus = new ComboBox();
@@ -39,6 +40,7 @@
             panelList = new Panel();
             dataGridViewProduct = new DataGridView();
             panelProduct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).BeginInit();
             panelList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProduct).BeginInit();
             SuspendLayout();
@@ -48,6 +50,7 @@
             panelProduct.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelProduct.AutoSize = true;
             panelProduct.BackColor = Color.FromArgb(255, 207, 213);
+            panelProduct.Controls.Add(pictureBoxRefresh);
             panelProduct.Controls.Add(btnAdd);
             panelProduct.Controls.Add(label3);
             panelProduct.Controls.Add(comboBoxByCus);
@@ -58,11 +61,23 @@
             panelProduct.Controls.Add(panelList);
             panelProduct.Location = new Point(0, 0);
             panelProduct.Name = "panelProduct";
-            panelProduct.Size = new Size(702, 504);
+            panelProduct.Size = new Size(702, 534);
             panelProduct.TabIndex = 0;
+            // 
+            // pictureBoxRefresh
+            // 
+            pictureBoxRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBoxRefresh.Image = Properties.Resources.refresh__2_;
+            pictureBoxRefresh.Location = new Point(629, 140);
+            pictureBoxRefresh.Name = "pictureBoxRefresh";
+            pictureBoxRefresh.Size = new Size(32, 32);
+            pictureBoxRefresh.TabIndex = 8;
+            pictureBoxRefresh.TabStop = false;
+            pictureBoxRefresh.Click += pictureBoxRefresh_Click;
             // 
             // btnAdd
             // 
+            btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnAdd.BackColor = Color.Transparent;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAdd.ForeColor = SystemColors.ControlDarkDark;
@@ -93,9 +108,9 @@
             // 
             comboBoxByCus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxByCus.FormattingEnabled = true;
-            comboBoxByCus.Location = new Point(145, 105);
+            comboBoxByCus.Location = new Point(158, 105);
             comboBoxByCus.Name = "comboBoxByCus";
-            comboBoxByCus.Size = new Size(291, 29);
+            comboBoxByCus.Size = new Size(278, 29);
             comboBoxByCus.TabIndex = 5;
             // 
             // label1
@@ -113,9 +128,9 @@
             // 
             comboBoxByItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxByItem.FormattingEnabled = true;
-            comboBoxByItem.Location = new Point(145, 60);
+            comboBoxByItem.Location = new Point(158, 60);
             comboBoxByItem.Name = "comboBoxByItem";
-            comboBoxByItem.Size = new Size(291, 29);
+            comboBoxByItem.Size = new Size(278, 29);
             comboBoxByItem.TabIndex = 3;
             // 
             // label2
@@ -133,9 +148,9 @@
             // 
             comboBoxCate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxCate.FormattingEnabled = true;
-            comboBoxCate.Location = new Point(145, 16);
+            comboBoxCate.Location = new Point(158, 16);
             comboBoxCate.Name = "comboBoxCate";
-            comboBoxCate.Size = new Size(291, 29);
+            comboBoxCate.Size = new Size(278, 29);
             comboBoxCate.TabIndex = 1;
             comboBoxCate.SelectedIndexChanged += comboBoxCate_SelectedIndexChanged;
             // 
@@ -144,9 +159,9 @@
             panelList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelList.AutoSize = true;
             panelList.Controls.Add(dataGridViewProduct);
-            panelList.Location = new Point(33, 165);
+            panelList.Location = new Point(33, 189);
             panelList.Name = "panelList";
-            panelList.Size = new Size(628, 327);
+            panelList.Size = new Size(628, 333);
             panelList.TabIndex = 0;
             // 
             // dataGridViewProduct
@@ -160,7 +175,7 @@
             dataGridViewProduct.Name = "dataGridViewProduct";
             dataGridViewProduct.RowTemplate.Height = 25;
             dataGridViewProduct.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProduct.Size = new Size(628, 327);
+            dataGridViewProduct.Size = new Size(628, 333);
             dataGridViewProduct.TabIndex = 0;
             // 
             // manageItemForm
@@ -169,13 +184,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.White;
-            ClientSize = new Size(700, 500);
+            ClientSize = new Size(700, 530);
             Controls.Add(panelProduct);
             FormBorderStyle = FormBorderStyle.None;
             Name = "manageItemForm";
             Load += manageItemForm_Load;
             panelProduct.ResumeLayout(false);
             panelProduct.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).EndInit();
             panelList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewProduct).EndInit();
             ResumeLayout(false);
@@ -194,5 +210,6 @@
         private Button btnAdd;
         private Label label3;
         private ComboBox comboBoxByCus;
+        private PictureBox pictureBoxRefresh;
     }
 }

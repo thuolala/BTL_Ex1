@@ -23,7 +23,7 @@ namespace Exercise1
         String strConn = ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
 
         //Load all item 
-        private void loadAll()
+        public void loadAll()
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
@@ -102,6 +102,11 @@ namespace Exercise1
             {
                 loadByCate(cateID);
             }
+        }
+
+        private void pictureBoxRefresh_Click(object sender, EventArgs e)
+        {
+            loadAll();
         }
     }
 }

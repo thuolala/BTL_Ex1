@@ -43,6 +43,8 @@
             comboBoxCate = new ComboBox();
             btnSave = new Button();
             btnReset = new Button();
+            exit = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)exit).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -192,6 +194,7 @@
             btnSave.TabIndex = 16;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnReset
             // 
@@ -203,6 +206,18 @@
             btnReset.TabIndex = 17;
             btnReset.Text = "Cancel";
             btnReset.UseVisualStyleBackColor = true;
+            btnReset.Click += btnReset_Click;
+            // 
+            // exit
+            // 
+            exit.BackColor = Color.Transparent;
+            exit.Image = Properties.Resources._switch;
+            exit.Location = new Point(464, 12);
+            exit.Name = "exit";
+            exit.Size = new Size(24, 24);
+            exit.TabIndex = 18;
+            exit.TabStop = false;
+            exit.Click += exit_Click;
             // 
             // addItem
             // 
@@ -210,6 +225,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 225, 207);
             ClientSize = new Size(500, 500);
+            Controls.Add(exit);
             Controls.Add(btnReset);
             Controls.Add(btnSave);
             Controls.Add(label7);
@@ -228,6 +244,11 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "addItem";
             Text = "addItem";
+            Load += addItem_Load;
+            MouseDown += addItem_MouseDown;
+            MouseMove += addItem_MouseMove;
+            MouseUp += addItem_MouseUp;
+            ((System.ComponentModel.ISupportInitialize)exit).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -249,5 +270,6 @@
         private ComboBox comboBoxCate;
         private Button btnSave;
         private Button btnReset;
+        private PictureBox exit;
     }
 }
