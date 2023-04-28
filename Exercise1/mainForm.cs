@@ -47,7 +47,7 @@ namespace Exercise1
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnProduct_Click(object sender, EventArgs e)

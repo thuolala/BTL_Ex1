@@ -1,6 +1,6 @@
 ﻿namespace Exercise1
 {
-    partial class addAgentForm
+    partial class createOrderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -126,7 +126,6 @@
             btnSave.TabIndex = 16;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click;
             // 
             // btnReset
             // 
@@ -138,7 +137,6 @@
             btnReset.TabIndex = 17;
             btnReset.Text = "Cancel";
             btnReset.UseVisualStyleBackColor = true;
-            btnReset.Click += btnReset_Click;
             // 
             // exit
             // 
@@ -149,9 +147,8 @@
             exit.Size = new Size(24, 24);
             exit.TabIndex = 18;
             exit.TabStop = false;
-            exit.Click += exit_Click;
             // 
-            // addAgentForm
+            // createOrderForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -168,9 +165,7 @@
             Controls.Add(label1);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "addAgentForm";
-            Text = "addItem";
-            Load += addAgentForm_Load;
+            Name = "createOrderForm";
             ((System.ComponentModel.ISupportInitialize)exit).EndInit();
             ResumeLayout(false);
             PerformLayout();

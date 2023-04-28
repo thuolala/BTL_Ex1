@@ -50,7 +50,7 @@ namespace Exercise1
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             List<String> nameSource = new List<String>();
-            for(int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 nameSource.Add(dt.Rows[i]["AgentName"].ToString());
             }
@@ -58,9 +58,29 @@ namespace Exercise1
             return nameSource;
         }
 
-        private void manageAgentForm_Load(object sender, EventArgs e)
+        //Get data for search box by ID
+        private List<String> getIDSource()
         {
-            loadAll();
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT AgentID FROM Agent", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            List<String> IDSource = new List<String>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                IDSource.Add(dt.Rows[i]["AgentID"].ToString());
+            }
+            conn.Close();
+            return IDSource;
+        }
+
+        //Search by Name 
+        private void searchName()
+        {
+            //Search by name
             AutoCompleteStringCollection nameSource = new AutoCompleteStringCollection();
             nameSource.AddRange(getNameSource().ToArray());
 
@@ -69,9 +89,36 @@ namespace Exercise1
             searchByName.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
+        //Search by ID 
+        private void searchID()
+        {
+            //Search by ID
+            AutoCompleteStringCollection IDSource = new AutoCompleteStringCollection();
+            IDSource.AddRange(getIDSource().ToArray());
+
+            searchByID.AutoCompleteCustomSource = IDSource;
+            searchByID.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            searchByID.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
+
+        private void manageAgentForm_Load(object sender, EventArgs e)
+        {
+            loadAll();
+            searchName();
+            searchID(); 
+        }
+
         private void pictureBoxRefresh_Click(object sender, EventArgs e)
         {
             loadAll();
+            searchName();
+            searchID();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            addAgentForm f = new addAgentForm();
+            f.ShowDialog();
         }
     }
 }

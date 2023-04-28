@@ -46,6 +46,7 @@ namespace Exercise1
             conn.Close();
             return itemID;
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(strConn);
@@ -66,8 +67,6 @@ namespace Exercise1
             da.Fill(dt);
             da.Dispose();
             MessageBox.Show("Add item successully!");
-            manageItemForm f = new manageItemForm();
-            f.loadAll();
             this.Close();
         }
 
@@ -125,7 +124,7 @@ namespace Exercise1
             itemName.Text = "";
             itemPrice.Text = "";
             itemAvai.Text = "";
-            itemDesc.Text = ""; 
+            itemDesc.Text = "";
         }
     }
 }

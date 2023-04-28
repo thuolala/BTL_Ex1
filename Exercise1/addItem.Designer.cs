@@ -243,7 +243,6 @@
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "addItem";
-            Text = "addItem";
             Load += addItem_Load;
             MouseDown += addItem_MouseDown;
             MouseMove += addItem_MouseMove;
