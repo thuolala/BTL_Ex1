@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             panelProduct = new Panel();
+            searchByCustomerID = new TextBox();
+            searchByItemName = new TextBox();
+            btnTop3 = new Button();
             pictureBoxRefresh = new PictureBox();
             btnAdd = new Button();
             label3 = new Label();
-            comboBoxByCus = new ComboBox();
             label1 = new Label();
-            comboBoxByItem = new ComboBox();
             label2 = new Label();
             comboBoxCate = new ComboBox();
             panelList = new Panel();
@@ -50,12 +51,13 @@
             panelProduct.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelProduct.AutoSize = true;
             panelProduct.BackColor = Color.FromArgb(255, 207, 213);
+            panelProduct.Controls.Add(searchByCustomerID);
+            panelProduct.Controls.Add(searchByItemName);
+            panelProduct.Controls.Add(btnTop3);
             panelProduct.Controls.Add(pictureBoxRefresh);
             panelProduct.Controls.Add(btnAdd);
             panelProduct.Controls.Add(label3);
-            panelProduct.Controls.Add(comboBoxByCus);
             panelProduct.Controls.Add(label1);
-            panelProduct.Controls.Add(comboBoxByItem);
             panelProduct.Controls.Add(label2);
             panelProduct.Controls.Add(comboBoxCate);
             panelProduct.Controls.Add(panelList);
@@ -63,6 +65,47 @@
             panelProduct.Name = "panelProduct";
             panelProduct.Size = new Size(702, 534);
             panelProduct.TabIndex = 0;
+            panelProduct.Paint += panelProduct_Paint;
+            // 
+            // searchByCustomerID
+            // 
+            searchByCustomerID.BorderStyle = BorderStyle.None;
+            searchByCustomerID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchByCustomerID.ForeColor = SystemColors.ControlDarkDark;
+            searchByCustomerID.Location = new Point(158, 99);
+            searchByCustomerID.Name = "searchByCustomerID";
+            searchByCustomerID.Size = new Size(278, 22);
+            searchByCustomerID.TabIndex = 14;
+            searchByCustomerID.TextChanged += searchByCustomerID_TextChanged;
+            // 
+            // searchByItemName
+            // 
+            searchByItemName.BorderStyle = BorderStyle.None;
+            searchByItemName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchByItemName.ForeColor = SystemColors.ControlDarkDark;
+            searchByItemName.Location = new Point(158, 60);
+            searchByItemName.Name = "searchByItemName";
+            searchByItemName.Size = new Size(278, 22);
+            searchByItemName.TabIndex = 13;
+            searchByItemName.TextChanged += searchByItemName_TextChanged;
+            // 
+            // btnTop3
+            // 
+            btnTop3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnTop3.BackColor = Color.Transparent;
+            btnTop3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTop3.ForeColor = SystemColors.ControlDarkDark;
+            btnTop3.Image = Properties.Resources.podium;
+            btnTop3.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTop3.Location = new Point(466, 16);
+            btnTop3.MaximumSize = new Size(222, 50);
+            btnTop3.MinimumSize = new Size(36, 0);
+            btnTop3.Name = "btnTop3";
+            btnTop3.Size = new Size(195, 50);
+            btnTop3.TabIndex = 9;
+            btnTop3.Text = "    Top 3 Items";
+            btnTop3.UseVisualStyleBackColor = false;
+            btnTop3.Click += btnTop3_Click;
             // 
             // pictureBoxRefresh
             // 
@@ -104,15 +147,6 @@
             label3.TabIndex = 6;
             label3.Text = "By Customer";
             // 
-            // comboBoxByCus
-            // 
-            comboBoxByCus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxByCus.FormattingEnabled = true;
-            comboBoxByCus.Location = new Point(158, 105);
-            comboBoxByCus.Name = "comboBoxByCus";
-            comboBoxByCus.Size = new Size(278, 29);
-            comboBoxByCus.TabIndex = 5;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -123,15 +157,6 @@
             label1.Size = new Size(68, 21);
             label1.TabIndex = 4;
             label1.Text = "By Item";
-            // 
-            // comboBoxByItem
-            // 
-            comboBoxByItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxByItem.FormattingEnabled = true;
-            comboBoxByItem.Location = new Point(158, 60);
-            comboBoxByItem.Name = "comboBoxByItem";
-            comboBoxByItem.Size = new Size(278, 29);
-            comboBoxByItem.TabIndex = 3;
             // 
             // label2
             // 
@@ -205,11 +230,12 @@
         private DataGridView dataGridViewProduct;
         private ComboBox comboBoxCate;
         private Label label1;
-        private ComboBox comboBoxByItem;
         private Label label2;
         private Button btnAdd;
         private Label label3;
-        private ComboBox comboBoxByCus;
         private PictureBox pictureBoxRefresh;
+        private Button btnTop3;
+        private TextBox searchByCustomerID;
+        private TextBox searchByItemName;
     }
 }

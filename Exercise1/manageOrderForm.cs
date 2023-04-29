@@ -89,16 +89,16 @@ namespace Exercise1
             return orderDateSource;
         }
 
-        //Search by Order ID 
+        //Search by Date
         private void searchDate()
         {
             //Search by Order Date
             AutoCompleteStringCollection orderDateSource = new AutoCompleteStringCollection();
-            orderDateSource.AddRange(getOrderIDSource().ToArray());
+            orderDateSource.AddRange(getDateSource().ToArray());
 
-            searchByOrderID.AutoCompleteCustomSource = orderDateSource;
-            searchByOrderID.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            searchByOrderID.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            searchByDate.AutoCompleteCustomSource = orderDateSource;
+            searchByDate.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            searchByDate.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         //Get data for search box by Customer ID
@@ -106,7 +106,7 @@ namespace Exercise1
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT DISTINCT CustomerID FROM Orders", conn);
+            SqlCommand cmd = new SqlCommand("SELECT DISTINCT AgentID FROM Agent", conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
             DataTable dt = new DataTable();
@@ -114,7 +114,7 @@ namespace Exercise1
             List<String> cusIDSource = new List<String>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cusIDSource.Add(dt.Rows[i]["CustomerID"].ToString());
+                cusIDSource.Add(dt.Rows[i]["AgentID"].ToString());
             }
             conn.Close();
             return cusIDSource;
@@ -125,11 +125,11 @@ namespace Exercise1
         {
             //Search by Order Date
             AutoCompleteStringCollection cusIDSource = new AutoCompleteStringCollection();
-            cusIDSource.AddRange(getOrderIDSource().ToArray());
+            cusIDSource.AddRange(getCusIDSource().ToArray());
 
-            searchByOrderID.AutoCompleteCustomSource = cusIDSource;
-            searchByOrderID.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            searchByOrderID.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            searchByCusID.AutoCompleteCustomSource = cusIDSource;
+            searchByCusID.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            searchByCusID.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void manageOrderForm_Load(object sender, EventArgs e)
@@ -200,6 +200,11 @@ namespace Exercise1
             searchOrderID();
             searchDate();
             searchCusID();
+        }
+
+        private void panelProduct_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

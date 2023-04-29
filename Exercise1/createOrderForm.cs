@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,10 +97,6 @@ namespace Exercise1
             labelQuantity.Text = itemNameList.Count.ToString();
             totalMoney += unitMoney;
             labelMoney.Text = totalMoney.ToString();
-
-
-            searchProduct.Text = "";
-            labelAvai.Text = "";
         }
 
         //Get auto ID 
@@ -265,7 +262,7 @@ namespace Exercise1
             SqlCommand cmd = new SqlCommand("Insert_Order", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@OrderDate", SqlDbType.DateTime)).Value = orderDate.Value;
-            cmd.Parameters.Add(new SqlParameter("@AgentID", SqlDbType.VarChar)).Value = searchCus.Text;
+            cmd.Parameters.Add(new SqlParameter("@AgentID", SqlDbType.VarChar)).Value = searchCus.Text.Trim();
             cmd.Parameters.Add(new SqlParameter("@Total", SqlDbType.Int)).Value = totalMoney;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -294,10 +291,29 @@ namespace Exercise1
             return itemID;
         }
 
+        //Get available 
+        private int getAvaiItem(string itemName)
+        {
+            int avai = 0;
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT Available FROM Item WHERE ItemName LIKE '%" + itemName + "%'", conn); ;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                avai = Int32.Parse(dt.Rows[0][0].ToString());
+            }
+            conn.Close();
+            return avai;
+        }
+
         //Create order detail with order ID above 
         private void addToDetail()
         {
-            for(int i = 0; i < itemNameList.Count; i++)
+            for (int i = 0; i < itemNameList.Count; i++)
             {
                 SqlConnection conn = new SqlConnection(strConn);
                 conn.Open();
@@ -305,7 +321,7 @@ namespace Exercise1
                 //Nhap vao bang Item
                 SqlCommand cmd = new SqlCommand("Insert_OrderDetail", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@OrderID", SqlDbType.VarChar)).Value = orderID.Text;
+                cmd.Parameters.Add(new SqlParameter("@OrderID", SqlDbType.VarChar)).Value = orderID.Text.Trim();
                 cmd.Parameters.Add(new SqlParameter("@ItemID", SqlDbType.VarChar)).Value = getItemID(itemNameList[i]);
                 cmd.Parameters.Add(new SqlParameter("@Quantity", SqlDbType.Int)).Value = buyQuant[i];
                 cmd.Parameters.Add(new SqlParameter("@UnitAmount", SqlDbType.Int)).Value = unitAmountList[i];
@@ -318,8 +334,8 @@ namespace Exercise1
                 //Update vao bang Item
                 cmd = new SqlCommand("Update_Avai", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ItemName", SqlDbType.VarChar)).Value = searchProduct.Text;
-                cmd.Parameters.Add(new SqlParameter("@Quantity", SqlDbType.Int)).Value = buyQuant[i];
+                cmd.Parameters.Add(new SqlParameter("@Quantity", SqlDbType.Int)).Value = getAvaiItem(itemNameList[i]) - buyQuant[i];
+                cmd.Parameters.Add(new SqlParameter("@ItemName", SqlDbType.VarChar)).Value = itemNameList[i];
 
                 da = new SqlDataAdapter(cmd);
                 dt = new DataTable();
@@ -334,7 +350,7 @@ namespace Exercise1
             DialogResult dialogResult = MessageBox.Show("Do you want to print order?", "Order Successfully", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
-            {
+            { 
                 createOrder();
                 addToDetail();
                 this.Close();

@@ -153,6 +153,16 @@ namespace Exercise1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap podium {
+            get {
+                object obj = ResourceManager.GetObject("podium", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rating {
             get {
                 object obj = ResourceManager.GetObject("rating", resourceCulture);

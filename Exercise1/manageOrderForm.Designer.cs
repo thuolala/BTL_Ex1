@@ -59,6 +59,7 @@
             panelProduct.Name = "panelProduct";
             panelProduct.Size = new Size(702, 534);
             panelProduct.TabIndex = 0;
+            panelProduct.Paint += panelProduct_Paint;
             // 
             // searchByCusID
             // 
