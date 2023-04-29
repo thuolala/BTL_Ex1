@@ -74,7 +74,13 @@ namespace Exercise1
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-
+            panelAction.Controls.Clear();
+            manageOrderForm mO = new manageOrderForm();
+            mO.TopLevel = false;
+            mO.Dock = DockStyle.Fill;
+            mO.Show();
+            panelAction.Controls.Add(mO);
+            mO.BringToFront();
         }
     }
 }

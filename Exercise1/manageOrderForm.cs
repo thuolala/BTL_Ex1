@@ -27,7 +27,7 @@ namespace Exercise1
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Order", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Orders", conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
             DataTable dt = new DataTable();
@@ -142,7 +142,8 @@ namespace Exercise1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            createOrderForm f = new createOrderForm();
+            f.ShowDialog();
         }
 
         private void searchByCusID_TextChanged(object sender, EventArgs e)

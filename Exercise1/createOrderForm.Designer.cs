@@ -34,8 +34,7 @@
             label3 = new Label();
             searchCus = new TextBox();
             label4 = new Label();
-            btnSave = new Button();
-            btnReset = new Button();
+            btnCheckout = new Button();
             exit = new PictureBox();
             orderDate = new DateTimePicker();
             label5 = new Label();
@@ -47,6 +46,7 @@
             cusName = new TextBox();
             avai = new Label();
             label8 = new Label();
+            btnAdd = new Button();
             ((System.ComponentModel.ISupportInitialize)exit).BeginInit();
             SuspendLayout();
             // 
@@ -103,6 +103,7 @@
             searchCus.Name = "searchCus";
             searchCus.Size = new Size(119, 22);
             searchCus.TabIndex = 9;
+            
             // 
             // label4
             // 
@@ -115,37 +116,27 @@
             label4.TabIndex = 8;
             label4.Text = "Customer ID";
             // 
-            // btnSave
+            // btnCheckout
             // 
-            btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSave.ForeColor = SystemColors.ControlDarkDark;
-            btnSave.Location = new Point(357, 476);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(188, 34);
-            btnSave.TabIndex = 16;
-            btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnReset
-            // 
-            btnReset.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnReset.ForeColor = SystemColors.ControlDarkDark;
-            btnReset.Location = new Point(196, 476);
-            btnReset.Name = "btnReset";
-            btnReset.Size = new Size(188, 34);
-            btnReset.TabIndex = 17;
-            btnReset.Text = "Cancel";
-            btnReset.UseVisualStyleBackColor = true;
+            btnCheckout.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCheckout.ForeColor = SystemColors.ControlDarkDark;
+            btnCheckout.Location = new Point(390, 476);
+            btnCheckout.Name = "btnCheckout";
+            btnCheckout.Size = new Size(155, 34);
+            btnCheckout.TabIndex = 16;
+            btnCheckout.Text = "Checkout";
+            btnCheckout.UseVisualStyleBackColor = true;
             // 
             // exit
             // 
             exit.BackColor = Color.Transparent;
             exit.Image = Properties.Resources._switch;
-            exit.Location = new Point(616, 12);
+            exit.Location = new Point(574, 12);
             exit.Name = "exit";
             exit.Size = new Size(24, 24);
             exit.TabIndex = 18;
             exit.TabStop = false;
+            exit.Click += exit_Click;
             // 
             // orderDate
             // 
@@ -184,8 +175,9 @@
             searchProduct.ForeColor = SystemColors.ControlDarkDark;
             searchProduct.Location = new Point(184, 259);
             searchProduct.Name = "searchProduct";
-            searchProduct.Size = new Size(255, 22);
+            searchProduct.Size = new Size(217, 22);
             searchProduct.TabIndex = 22;
+            
             // 
             // productList
             // 
@@ -201,7 +193,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ControlDarkDark;
-            label7.Location = new Point(445, 259);
+            label7.Location = new Point(407, 259);
             label7.Name = "label7";
             label7.Size = new Size(19, 21);
             label7.TabIndex = 24;
@@ -212,7 +204,7 @@
             buyQuan.BorderStyle = BorderStyle.None;
             buyQuan.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             buyQuan.ForeColor = SystemColors.ControlDarkDark;
-            buyQuan.Location = new Point(470, 258);
+            buyQuan.Location = new Point(432, 258);
             buyQuan.Name = "buyQuan";
             buyQuan.Size = new Size(75, 22);
             buyQuan.TabIndex = 26;
@@ -251,12 +243,25 @@
             label8.TabIndex = 29;
             label8.Text = " ";
             // 
+            // btnAdd
+            // 
+            btnAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.ForeColor = SystemColors.ControlDarkDark;
+            btnAdd.Location = new Point(513, 258);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(22, 22);
+            btnAdd.TabIndex = 30;
+            btnAdd.Text = "+";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
             // createOrderForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 225, 207);
             ClientSize = new Size(610, 530);
+            Controls.Add(btnAdd);
             Controls.Add(label8);
             Controls.Add(avai);
             Controls.Add(cusName);
@@ -268,8 +273,7 @@
             Controls.Add(label5);
             Controls.Add(orderDate);
             Controls.Add(exit);
-            Controls.Add(btnReset);
-            Controls.Add(btnSave);
+            Controls.Add(btnCheckout);
             Controls.Add(searchCus);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -278,6 +282,10 @@
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "createOrderForm";
+            Load += createOrderForm_Load;
+            MouseDown += createOrderForm_MouseDown;
+            MouseMove += createOrderForm_MouseMove;
+            MouseUp += createOrderForm_MouseUp;
             ((System.ComponentModel.ISupportInitialize)exit).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -291,7 +299,7 @@
         private Label label3;
         private TextBox searchCus;
         private Label label4;
-        private Button btnSave;
+        private Button btnCheckout;
         private Button btnReset;
         private PictureBox exit;
         private DateTimePicker orderDate;
@@ -304,5 +312,6 @@
         private TextBox cusName;
         private Label avai;
         private Label label8;
+        private Button btnAdd;
     }
 }
