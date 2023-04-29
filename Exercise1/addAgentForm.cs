@@ -77,5 +77,29 @@ namespace Exercise1
             agentName.Text = "";
             agentAddress.Text = "";
         }
+
+        //move 
+        private bool mouse;
+        private Point lastPos;
+
+        private void addAgentForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouse = true;
+            lastPos = e.Location;
+        }
+
+        private void addAgentForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouse)
+            {
+                this.Location = new Point((this.Location.X - lastPos.X) + e.X, (this.Location.Y - lastPos.Y) + e.Y);
+                this.Update();
+            }
+        }
+
+        private void addAgentForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouse = false;
+        }
     }
 }

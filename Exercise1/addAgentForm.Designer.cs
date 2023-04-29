@@ -171,6 +171,9 @@
             Name = "addAgentForm";
             Text = "addItem";
             Load += addAgentForm_Load;
+            MouseDown += addAgentForm_MouseDown;
+            MouseMove += addAgentForm_MouseMove;
+            MouseUp += addAgentForm_MouseUp;
             ((System.ComponentModel.ISupportInitialize)exit).EndInit();
             ResumeLayout(false);
             PerformLayout();

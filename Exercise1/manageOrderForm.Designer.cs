@@ -25,6 +25,9 @@
         private void InitializeComponent()
         {
             panelProduct = new Panel();
+            searchByCusID = new TextBox();
+            searchByDate = new TextBox();
+            searchByOrderID = new TextBox();
             pictureBoxRefresh = new PictureBox();
             btnAdd = new Button();
             label3 = new Label();
@@ -32,9 +35,6 @@
             label2 = new Label();
             panelList = new Panel();
             dataGridViewOrder = new DataGridView();
-            searchByOrderID = new TextBox();
-            searchByDate = new TextBox();
-            searchByCusID = new TextBox();
             panelProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).BeginInit();
             panelList.SuspendLayout();
@@ -59,6 +59,39 @@
             panelProduct.Name = "panelProduct";
             panelProduct.Size = new Size(702, 534);
             panelProduct.TabIndex = 0;
+            // 
+            // searchByCusID
+            // 
+            searchByCusID.BorderStyle = BorderStyle.None;
+            searchByCusID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchByCusID.ForeColor = SystemColors.ControlDarkDark;
+            searchByCusID.Location = new Point(177, 105);
+            searchByCusID.Name = "searchByCusID";
+            searchByCusID.Size = new Size(266, 22);
+            searchByCusID.TabIndex = 13;
+            searchByCusID.TextChanged += searchByCusID_TextChanged;
+            // 
+            // searchByDate
+            // 
+            searchByDate.BorderStyle = BorderStyle.None;
+            searchByDate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchByDate.ForeColor = SystemColors.ControlDarkDark;
+            searchByDate.Location = new Point(177, 60);
+            searchByDate.Name = "searchByDate";
+            searchByDate.Size = new Size(266, 22);
+            searchByDate.TabIndex = 12;
+            searchByDate.TextChanged += searchByDate_TextChanged;
+            // 
+            // searchByOrderID
+            // 
+            searchByOrderID.BorderStyle = BorderStyle.None;
+            searchByOrderID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchByOrderID.ForeColor = SystemColors.ControlDarkDark;
+            searchByOrderID.Location = new Point(177, 19);
+            searchByOrderID.Name = "searchByOrderID";
+            searchByOrderID.Size = new Size(266, 22);
+            searchByOrderID.TabIndex = 11;
+            searchByOrderID.TextChanged += searchByOrderID_TextChanged;
             // 
             // pictureBoxRefresh
             // 
@@ -86,6 +119,7 @@
             btnAdd.TabIndex = 7;
             btnAdd.Text = "    Create Order";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // label3
             // 
@@ -144,36 +178,6 @@
             dataGridViewOrder.Size = new Size(628, 333);
             dataGridViewOrder.TabIndex = 0;
             // 
-            // searchByOrderID
-            // 
-            searchByOrderID.BorderStyle = BorderStyle.None;
-            searchByOrderID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            searchByOrderID.ForeColor = SystemColors.ControlDarkDark;
-            searchByOrderID.Location = new Point(177, 19);
-            searchByOrderID.Name = "searchByOrderID";
-            searchByOrderID.Size = new Size(266, 22);
-            searchByOrderID.TabIndex = 11;
-            // 
-            // searchByDate
-            // 
-            searchByDate.BorderStyle = BorderStyle.None;
-            searchByDate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            searchByDate.ForeColor = SystemColors.ControlDarkDark;
-            searchByDate.Location = new Point(177, 60);
-            searchByDate.Name = "searchByDate";
-            searchByDate.Size = new Size(266, 22);
-            searchByDate.TabIndex = 12;
-            // 
-            // searchByCusID
-            // 
-            searchByCusID.BorderStyle = BorderStyle.None;
-            searchByCusID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            searchByCusID.ForeColor = SystemColors.ControlDarkDark;
-            searchByCusID.Location = new Point(177, 105);
-            searchByCusID.Name = "searchByCusID";
-            searchByCusID.Size = new Size(266, 22);
-            searchByCusID.TabIndex = 13;
-            // 
             // manageOrderForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -184,6 +188,7 @@
             Controls.Add(panelProduct);
             FormBorderStyle = FormBorderStyle.None;
             Name = "manageOrderForm";
+            Load += manageOrderForm_Load;
             panelProduct.ResumeLayout(false);
             panelProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).EndInit();

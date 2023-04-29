@@ -105,7 +105,7 @@ namespace Exercise1
         {
             loadAll();
             searchName();
-            searchID(); 
+            searchID();
         }
 
         private void pictureBoxRefresh_Click(object sender, EventArgs e)
@@ -119,6 +119,38 @@ namespace Exercise1
         {
             addAgentForm f = new addAgentForm();
             f.ShowDialog();
+        }
+
+        private void searchByID_TextChanged(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Agent WHERE AgentID LIKE '%" + searchByID.Text + "%'", conn); ;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                dataGridViewCustomer.DataSource = dt;
+            }
+            conn.Close();
+        }
+
+        private void searchByName_TextChanged(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Agent WHERE AgentName LIKE '%" + searchByName.Text + "%'", conn); ;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                dataGridViewCustomer.DataSource = dt;
+            }
+            conn.Close();
         }
     }
 }

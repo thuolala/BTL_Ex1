@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelCus = new Panel();
+            searchByID = new TextBox();
             searchByName = new TextBox();
             pictureBoxRefresh = new PictureBox();
             btnAdd = new Button();
@@ -36,7 +37,6 @@
             label2 = new Label();
             panelList = new Panel();
             dataGridViewCustomer = new DataGridView();
-            searchByID = new TextBox();
             panelCus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).BeginInit();
             panelList.SuspendLayout();
@@ -60,6 +60,17 @@
             panelCus.Size = new Size(702, 534);
             panelCus.TabIndex = 0;
             // 
+            // searchByID
+            // 
+            searchByID.BorderStyle = BorderStyle.None;
+            searchByID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchByID.ForeColor = SystemColors.ControlDarkDark;
+            searchByID.Location = new Point(158, 18);
+            searchByID.Name = "searchByID";
+            searchByID.Size = new Size(278, 22);
+            searchByID.TabIndex = 11;
+            searchByID.TextChanged += searchByID_TextChanged;
+            // 
             // searchByName
             // 
             searchByName.BorderStyle = BorderStyle.None;
@@ -69,6 +80,7 @@
             searchByName.Name = "searchByName";
             searchByName.Size = new Size(278, 22);
             searchByName.TabIndex = 10;
+            searchByName.TextChanged += searchByName_TextChanged;
             // 
             // pictureBoxRefresh
             // 
@@ -144,16 +156,6 @@
             dataGridViewCustomer.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCustomer.Size = new Size(628, 397);
             dataGridViewCustomer.TabIndex = 0;
-            // 
-            // searchByID
-            // 
-            searchByID.BorderStyle = BorderStyle.None;
-            searchByID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            searchByID.ForeColor = SystemColors.ControlDarkDark;
-            searchByID.Location = new Point(158, 18);
-            searchByID.Name = "searchByID";
-            searchByID.Size = new Size(278, 22);
-            searchByID.TabIndex = 11;
             // 
             // manageAgentForm
             // 

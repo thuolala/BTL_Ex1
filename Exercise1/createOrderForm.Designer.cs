@@ -29,15 +29,24 @@
         private void InitializeComponent()
         {
             label2 = new Label();
-            agentID = new TextBox();
+            orderID = new TextBox();
             label1 = new Label();
-            agentName = new TextBox();
             label3 = new Label();
-            agentAddress = new TextBox();
+            searchCus = new TextBox();
             label4 = new Label();
             btnSave = new Button();
             btnReset = new Button();
             exit = new PictureBox();
+            orderDate = new DateTimePicker();
+            label5 = new Label();
+            label6 = new Label();
+            searchProduct = new TextBox();
+            productList = new RichTextBox();
+            label7 = new Label();
+            buyQuan = new TextBox();
+            cusName = new TextBox();
+            avai = new Label();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)exit).BeginInit();
             SuspendLayout();
             // 
@@ -46,22 +55,22 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(161, 21);
+            label2.Location = new Point(196, 21);
             label2.Name = "label2";
-            label2.Size = new Size(236, 32);
+            label2.Size = new Size(218, 32);
             label2.TabIndex = 3;
-            label2.Text = "Add New Customer";
+            label2.Text = "Create New Order";
             // 
-            // agentID
+            // orderID
             // 
-            agentID.BorderStyle = BorderStyle.None;
-            agentID.Enabled = false;
-            agentID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            agentID.ForeColor = SystemColors.ControlDarkDark;
-            agentID.Location = new Point(161, 79);
-            agentID.Name = "agentID";
-            agentID.Size = new Size(142, 22);
-            agentID.TabIndex = 5;
+            orderID.BorderStyle = BorderStyle.None;
+            orderID.Enabled = false;
+            orderID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            orderID.ForeColor = SystemColors.ControlDarkDark;
+            orderID.Location = new Point(184, 79);
+            orderID.Name = "orderID";
+            orderID.Size = new Size(119, 22);
+            orderID.TabIndex = 5;
             // 
             // label1
             // 
@@ -70,19 +79,9 @@
             label1.ForeColor = SystemColors.ControlDarkDark;
             label1.Location = new Point(46, 80);
             label1.Name = "label1";
-            label1.Size = new Size(104, 21);
+            label1.Size = new Size(74, 21);
             label1.TabIndex = 4;
-            label1.Text = "Customer ID";
-            // 
-            // agentName
-            // 
-            agentName.BorderStyle = BorderStyle.None;
-            agentName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            agentName.ForeColor = SystemColors.ControlDarkDark;
-            agentName.Location = new Point(161, 136);
-            agentName.Name = "agentName";
-            agentName.Size = new Size(278, 22);
-            agentName.TabIndex = 7;
+            label1.Text = "Order ID";
             // 
             // label3
             // 
@@ -91,19 +90,19 @@
             label3.ForeColor = SystemColors.ControlDarkDark;
             label3.Location = new Point(46, 136);
             label3.Name = "label3";
-            label3.Size = new Size(88, 21);
+            label3.Size = new Size(93, 21);
             label3.TabIndex = 6;
-            label3.Text = "Full Name";
+            label3.Text = "Order Date";
             // 
-            // agentAddress
+            // searchCus
             // 
-            agentAddress.BorderStyle = BorderStyle.None;
-            agentAddress.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            agentAddress.ForeColor = SystemColors.ControlDarkDark;
-            agentAddress.Location = new Point(161, 198);
-            agentAddress.Name = "agentAddress";
-            agentAddress.Size = new Size(278, 22);
-            agentAddress.TabIndex = 9;
+            searchCus.BorderStyle = BorderStyle.None;
+            searchCus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchCus.ForeColor = SystemColors.ControlDarkDark;
+            searchCus.Location = new Point(184, 198);
+            searchCus.Name = "searchCus";
+            searchCus.Size = new Size(119, 22);
+            searchCus.TabIndex = 9;
             // 
             // label4
             // 
@@ -112,17 +111,17 @@
             label4.ForeColor = SystemColors.ControlDarkDark;
             label4.Location = new Point(46, 198);
             label4.Name = "label4";
-            label4.Size = new Size(70, 21);
+            label4.Size = new Size(104, 21);
             label4.TabIndex = 8;
-            label4.Text = "Address";
+            label4.Text = "Customer ID";
             // 
             // btnSave
             // 
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = SystemColors.ControlDarkDark;
-            btnSave.Location = new Point(284, 243);
+            btnSave.Location = new Point(357, 476);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(155, 34);
+            btnSave.Size = new Size(188, 34);
             btnSave.TabIndex = 16;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -131,9 +130,9 @@
             // 
             btnReset.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnReset.ForeColor = SystemColors.ControlDarkDark;
-            btnReset.Location = new Point(123, 243);
+            btnReset.Location = new Point(196, 476);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(155, 34);
+            btnReset.Size = new Size(188, 34);
             btnReset.TabIndex = 17;
             btnReset.Text = "Cancel";
             btnReset.UseVisualStyleBackColor = true;
@@ -142,26 +141,139 @@
             // 
             exit.BackColor = Color.Transparent;
             exit.Image = Properties.Resources._switch;
-            exit.Location = new Point(464, 12);
+            exit.Location = new Point(616, 12);
             exit.Name = "exit";
             exit.Size = new Size(24, 24);
             exit.TabIndex = 18;
             exit.TabStop = false;
+            // 
+            // orderDate
+            // 
+            orderDate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            orderDate.Location = new Point(184, 136);
+            orderDate.Name = "orderDate";
+            orderDate.Size = new Size(361, 29);
+            orderDate.TabIndex = 19;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ControlDarkDark;
+            label5.Location = new Point(46, 260);
+            label5.Name = "label5";
+            label5.Size = new Size(130, 21);
+            label5.TabIndex = 20;
+            label5.Text = "Choose Product";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = SystemColors.ControlDarkDark;
+            label6.Location = new Point(46, 332);
+            label6.Name = "label6";
+            label6.Size = new Size(100, 21);
+            label6.TabIndex = 21;
+            label6.Text = "Product List";
+            // 
+            // searchProduct
+            // 
+            searchProduct.BorderStyle = BorderStyle.None;
+            searchProduct.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            searchProduct.ForeColor = SystemColors.ControlDarkDark;
+            searchProduct.Location = new Point(184, 259);
+            searchProduct.Name = "searchProduct";
+            searchProduct.Size = new Size(255, 22);
+            searchProduct.TabIndex = 22;
+            // 
+            // productList
+            // 
+            productList.BorderStyle = BorderStyle.FixedSingle;
+            productList.Location = new Point(184, 334);
+            productList.Name = "productList";
+            productList.Size = new Size(361, 136);
+            productList.TabIndex = 23;
+            productList.Text = "";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = SystemColors.ControlDarkDark;
+            label7.Location = new Point(445, 259);
+            label7.Name = "label7";
+            label7.Size = new Size(19, 21);
+            label7.TabIndex = 24;
+            label7.Text = "x";
+            // 
+            // buyQuan
+            // 
+            buyQuan.BorderStyle = BorderStyle.None;
+            buyQuan.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buyQuan.ForeColor = SystemColors.ControlDarkDark;
+            buyQuan.Location = new Point(470, 258);
+            buyQuan.Name = "buyQuan";
+            buyQuan.Size = new Size(75, 22);
+            buyQuan.TabIndex = 26;
+            // 
+            // cusName
+            // 
+            cusName.BorderStyle = BorderStyle.None;
+            cusName.Enabled = false;
+            cusName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cusName.ForeColor = SystemColors.ControlDarkDark;
+            cusName.Location = new Point(320, 198);
+            cusName.Name = "cusName";
+            cusName.Size = new Size(225, 22);
+            cusName.TabIndex = 27;
+            // 
+            // avai
+            // 
+            avai.AutoSize = true;
+            avai.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            avai.ForeColor = Color.IndianRed;
+            avai.Location = new Point(184, 296);
+            avai.Name = "avai";
+            avai.Size = new Size(65, 17);
+            avai.TabIndex = 28;
+            avai.Text = "Available: ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Enabled = false;
+            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.IndianRed;
+            label8.Location = new Point(255, 296);
+            label8.Name = "label8";
+            label8.Size = new Size(12, 17);
+            label8.TabIndex = 29;
+            label8.Text = " ";
             // 
             // createOrderForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 225, 207);
-            ClientSize = new Size(500, 320);
+            ClientSize = new Size(610, 530);
+            Controls.Add(label8);
+            Controls.Add(avai);
+            Controls.Add(cusName);
+            Controls.Add(buyQuan);
+            Controls.Add(label7);
+            Controls.Add(productList);
+            Controls.Add(searchProduct);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(orderDate);
             Controls.Add(exit);
             Controls.Add(btnReset);
             Controls.Add(btnSave);
-            Controls.Add(agentAddress);
+            Controls.Add(searchCus);
             Controls.Add(label4);
-            Controls.Add(agentName);
             Controls.Add(label3);
-            Controls.Add(agentID);
+            Controls.Add(orderID);
             Controls.Add(label1);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
@@ -174,14 +286,23 @@
         #endregion
 
         private Label label2;
-        private TextBox agentID;
+        private TextBox orderID;
         private Label label1;
-        private TextBox agentName;
         private Label label3;
-        private TextBox agentAddress;
+        private TextBox searchCus;
         private Label label4;
         private Button btnSave;
         private Button btnReset;
         private PictureBox exit;
+        private DateTimePicker orderDate;
+        private Label label5;
+        private Label label6;
+        private TextBox searchProduct;
+        private RichTextBox productList;
+        private Label label7;
+        private TextBox buyQuan;
+        private TextBox cusName;
+        private Label avai;
+        private Label label8;
     }
 }
