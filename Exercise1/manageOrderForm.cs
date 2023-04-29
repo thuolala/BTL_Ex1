@@ -150,7 +150,7 @@ namespace Exercise1
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Orders WHERE CustomerID LIKE '%" + searchByCusID.Text + "%'", conn); ;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Orders WHERE AgentID LIKE '%" + searchByCusID.Text + "%'", conn); ;
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
             DataTable dt = new DataTable();
@@ -192,6 +192,14 @@ namespace Exercise1
                 dataGridViewOrder.DataSource = dt;
             }
             conn.Close();
+        }
+
+        private void pictureBoxRefresh_Click(object sender, EventArgs e)
+        {
+            loadAll();
+            searchOrderID();
+            searchDate();
+            searchCusID();
         }
     }
 }

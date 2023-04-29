@@ -22,6 +22,13 @@ namespace Exercise1
         //Read connection from App.config
         String strConn = ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
 
+        //List of product
+        List<String> itemNameList = new List<String>();
+        List<int> buyQuant = new List<int>();
+        List<int> unitAmountList = new List<int>();
+        int unitMoney = 0;
+        int totalMoney = 0;
+
         //move 
         private bool mouse;
         private Point lastPos;
@@ -51,16 +58,48 @@ namespace Exercise1
 
         }
 
+        //Get Unit Amount 
+        private int getPriceOf(string itemName)
+        {
+            int price = 0;
+
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT Price FROM Item WHERE ItemName LIKE '" + itemName + "'", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                price = Int32.Parse(dt.Rows[0][0].ToString());
+            }
+            conn.Close();
+
+            return price;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            List<String> itemNameList = new List<String>();
-            List<int> buyQuant = new List<int>();
-
             itemNameList.Add(searchProduct.Text);
             buyQuant.Add(Int32.Parse(buyQuan.Text));
+            int count = itemNameList.Count;
 
-            productList.AppendText(Environment.NewLine + searchProduct.Text + "    x    " + buyQuan.Text);
+            for (int i = 0; i < itemNameList.Count; i++)
+            {
+                unitMoney = getPriceOf(itemNameList[i]) * buyQuant[i];
+            }
 
+            unitAmountList.Add(unitMoney);
+            productList.AppendText(count.ToString() + ". " + searchProduct.Text + "    x    " + buyQuan.Text + ": " + unitMoney.ToString() + Environment.NewLine);
+
+            labelQuantity.Text = itemNameList.Count.ToString();
+            totalMoney += unitMoney;
+            labelMoney.Text = totalMoney.ToString();
+
+
+            searchProduct.Text = "";
+            labelAvai.Text = "";
         }
 
         //Get auto ID 
@@ -82,8 +121,6 @@ namespace Exercise1
             conn.Close();
             return orderID;
         }
-
-
 
         private void exit_Click(object sender, EventArgs e)
         {
@@ -152,7 +189,7 @@ namespace Exercise1
         {
             //Search by item name
             AutoCompleteStringCollection cusIDSource = new AutoCompleteStringCollection();
-            cusIDSource.AddRange(getItemNameSource().ToArray());
+            cusIDSource.AddRange(getCusIDSource().ToArray());
 
             searchCus.AutoCompleteCustomSource = cusIDSource;
             searchCus.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -178,6 +215,136 @@ namespace Exercise1
             conn.Close();
 
             return cusName;
-        }     
+        }
+
+        private void searchCus_TextChanged(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT AgentName FROM Agent WHERE AgentID LIKE '%" + searchCus.Text + "%'", conn); ;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                cusName.Text = dt.Rows[0][0].ToString();
+            }
+            conn.Close();
+        }
+
+        private void searchProduct_TextChanged(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT Available FROM Item WHERE ItemName LIKE '%" + searchProduct.Text + "%'", conn); ;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                labelAvai.Text = dt.Rows[0][0].ToString();
+            }
+            conn.Close();
+        }
+
+        //Print order
+        private void printOrder()
+        {
+
+        }
+
+        //Create order to database 
+        private void createOrder()
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+
+            //Nhap vao bang Item
+            SqlCommand cmd = new SqlCommand("Insert_Order", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@OrderDate", SqlDbType.DateTime)).Value = orderDate.Value;
+            cmd.Parameters.Add(new SqlParameter("@AgentID", SqlDbType.VarChar)).Value = searchCus.Text;
+            cmd.Parameters.Add(new SqlParameter("@Total", SqlDbType.Int)).Value = totalMoney;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            da.Dispose();
+            this.Close();
+        }
+
+        //Get Item ID By Name
+        private string getItemID(string name)
+        {
+            string itemID = "";
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT ItemID FROM Item WHERE ItemName LIKE '%" + name + "%'", conn); ;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                itemID = dt.Rows[0][0].ToString();
+            }
+            conn.Close();
+            return itemID;
+        }
+
+        //Create order detail with order ID above 
+        private void addToDetail()
+        {
+            for(int i = 0; i < itemNameList.Count; i++)
+            {
+                SqlConnection conn = new SqlConnection(strConn);
+                conn.Open();
+
+                //Nhap vao bang Item
+                SqlCommand cmd = new SqlCommand("Insert_OrderDetail", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@OrderID", SqlDbType.VarChar)).Value = orderID.Text;
+                cmd.Parameters.Add(new SqlParameter("@ItemID", SqlDbType.VarChar)).Value = getItemID(itemNameList[i]);
+                cmd.Parameters.Add(new SqlParameter("@Quantity", SqlDbType.Int)).Value = buyQuant[i];
+                cmd.Parameters.Add(new SqlParameter("@UnitAmount", SqlDbType.Int)).Value = unitAmountList[i];
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                da.Dispose();
+
+                //Update vao bang Item
+                cmd = new SqlCommand("Update_Avai", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ItemName", SqlDbType.VarChar)).Value = searchProduct.Text;
+                cmd.Parameters.Add(new SqlParameter("@Quantity", SqlDbType.Int)).Value = buyQuant[i];
+
+                da = new SqlDataAdapter(cmd);
+                dt = new DataTable();
+                da.Fill(dt);
+                da.Dispose();
+                this.Close();
+            }
+        }
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want to print order?", "Order Successfully", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                createOrder();
+                addToDetail();
+                this.Close();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                createOrder();
+                addToDetail();
+                this.Close();
+            }
+        }
     }
 }

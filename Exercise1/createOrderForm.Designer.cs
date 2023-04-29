@@ -45,8 +45,13 @@
             buyQuan = new TextBox();
             cusName = new TextBox();
             avai = new Label();
-            label8 = new Label();
+            labelAvai = new Label();
             btnAdd = new Button();
+            label9 = new Label();
+            labelQuantity = new Label();
+            labelMoney = new Label();
+            label10 = new Label();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)exit).BeginInit();
             SuspendLayout();
             // 
@@ -103,7 +108,7 @@
             searchCus.Name = "searchCus";
             searchCus.Size = new Size(119, 22);
             searchCus.TabIndex = 9;
-            
+            searchCus.TextChanged += searchCus_TextChanged;
             // 
             // label4
             // 
@@ -120,12 +125,13 @@
             // 
             btnCheckout.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCheckout.ForeColor = SystemColors.ControlDarkDark;
-            btnCheckout.Location = new Point(390, 476);
+            btnCheckout.Location = new Point(390, 521);
             btnCheckout.Name = "btnCheckout";
             btnCheckout.Size = new Size(155, 34);
             btnCheckout.TabIndex = 16;
             btnCheckout.Text = "Checkout";
             btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += btnCheckout_Click;
             // 
             // exit
             // 
@@ -177,7 +183,7 @@
             searchProduct.Name = "searchProduct";
             searchProduct.Size = new Size(217, 22);
             searchProduct.TabIndex = 22;
-            
+            searchProduct.TextChanged += searchProduct_TextChanged;
             // 
             // productList
             // 
@@ -231,17 +237,17 @@
             avai.TabIndex = 28;
             avai.Text = "Available: ";
             // 
-            // label8
+            // labelAvai
             // 
-            label8.AutoSize = true;
-            label8.Enabled = false;
-            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.IndianRed;
-            label8.Location = new Point(255, 296);
-            label8.Name = "label8";
-            label8.Size = new Size(12, 17);
-            label8.TabIndex = 29;
-            label8.Text = " ";
+            labelAvai.AutoSize = true;
+            labelAvai.Enabled = false;
+            labelAvai.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAvai.ForeColor = Color.IndianRed;
+            labelAvai.Location = new Point(255, 296);
+            labelAvai.Name = "labelAvai";
+            labelAvai.Size = new Size(12, 17);
+            labelAvai.TabIndex = 29;
+            labelAvai.Text = " ";
             // 
             // btnAdd
             // 
@@ -255,14 +261,76 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label9.ForeColor = Color.IndianRed;
+            label9.Location = new Point(184, 483);
+            label9.Name = "label9";
+            label9.Size = new Size(95, 17);
+            label9.TabIndex = 31;
+            label9.Text = "Total Quantity: ";
+            // 
+            // labelQuantity
+            // 
+            labelQuantity.AutoSize = true;
+            labelQuantity.Enabled = false;
+            labelQuantity.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelQuantity.ForeColor = Color.IndianRed;
+            labelQuantity.Location = new Point(285, 483);
+            labelQuantity.Name = "labelQuantity";
+            labelQuantity.Size = new Size(12, 17);
+            labelQuantity.TabIndex = 32;
+            labelQuantity.Text = " ";
+            // 
+            // labelMoney
+            // 
+            labelMoney.AutoSize = true;
+            labelMoney.Enabled = false;
+            labelMoney.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelMoney.ForeColor = Color.IndianRed;
+            labelMoney.Location = new Point(407, 483);
+            labelMoney.Name = "labelMoney";
+            labelMoney.Size = new Size(12, 17);
+            labelMoney.TabIndex = 34;
+            labelMoney.Text = " ";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label10.ForeColor = Color.IndianRed;
+            label10.Location = new Point(319, 483);
+            label10.Name = "label10";
+            label10.Size = new Size(84, 17);
+            label10.TabIndex = 33;
+            label10.Text = "Total Money: ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label8.ForeColor = Color.IndianRed;
+            label8.Location = new Point(510, 483);
+            label8.Name = "label8";
+            label8.Size = new Size(35, 17);
+            label8.TabIndex = 35;
+            label8.Text = "VND";
+            // 
             // createOrderForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 225, 207);
-            ClientSize = new Size(610, 530);
-            Controls.Add(btnAdd);
+            ClientSize = new Size(610, 567);
             Controls.Add(label8);
+            Controls.Add(labelMoney);
+            Controls.Add(label10);
+            Controls.Add(labelQuantity);
+            Controls.Add(label9);
+            Controls.Add(btnAdd);
+            Controls.Add(labelAvai);
             Controls.Add(avai);
             Controls.Add(cusName);
             Controls.Add(buyQuan);
@@ -311,7 +379,12 @@
         private TextBox buyQuan;
         private TextBox cusName;
         private Label avai;
-        private Label label8;
+        private Label labelAvai;
         private Button btnAdd;
+        private Label label9;
+        private Label labelQuantity;
+        private Label labelMoney;
+        private Label label10;
+        private Label label8;
     }
 }

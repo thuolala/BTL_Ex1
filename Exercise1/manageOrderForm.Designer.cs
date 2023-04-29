@@ -102,6 +102,7 @@
             pictureBoxRefresh.Size = new Size(32, 32);
             pictureBoxRefresh.TabIndex = 8;
             pictureBoxRefresh.TabStop = false;
+            pictureBoxRefresh.Click += pictureBoxRefresh_Click;
             // 
             // btnAdd
             // 
